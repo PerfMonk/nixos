@@ -7,33 +7,13 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware-configuration-zfs.nix ./zfs.nix
     ];
-  nixpkgs.config.allowBroken = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.supportedFilesystems = [ "zfs" ];
 
-  boot.zfs.requestEncryptionCredentials = true;
-  boot.zfs.enableUnstable = true;
-  services.zfs.autoSnapshot.enable = true;
-  services.zfs.autoScrub.enable = true;
-  services.zfs.autoScrub.pools = ["rpool"];
-  
-  boot.initrd.luks.devices = {
-   root = {
-     device = "/dev/disk/by-uuid/1dd3bc65-70dd-48aa-ad62-fe56b63a1c04"; ## Use blkid to find this UUID
-     preLVM = true;
-   };
-  }; 
 
   networking.hostName = "clinix"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.hostId = "4441267e";
+#  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
@@ -42,7 +22,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.wlp1s0.useDHCP = true;
+  networking.interfaces.wlp1s0.useDHCP = false;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -65,30 +45,30 @@
   
 
   # Configure keymap in X11
-   services.xserver.layout = "ca";
+  services.xserver.layout = "ca";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.bt = {
      isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
    };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     vim
      wget
+     networkmanager
      firefox
      neofetch
      inxi
@@ -97,35 +77,26 @@
      zfs
      zfsbackup
      zfstools
+     ## Themes ##
+     pkgs.nordic
+     pkgs.libsForQt5.qtstyleplugin-kvantum
+     pkgs.borgbackup
+     pkgs.discourseAllPlugins
+     pkgs.partition-manager
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-   programs.mtr.enable = true;
-   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-   };
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
-
- systemd.services.partprobe = {
-   enable = true;
-   description = "partprobe after cryptsetup";
-   unitConfig = {
-     Type = "oneshot";
-     After = "cryptsetup.target";
-     DefaultDepedencies = "no";
-   };
-   before = [ "cryptroot1.mount" ];
-   serviceConfig = {
-     Type = "oneshot";
-     ExecStart = "/sbin/partprobe /dev/mapper/cryptroot";
-   };
- };
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
