@@ -1,0 +1,3 @@
+NAME           SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+bpool_scx4fr  3.75G  44.0M  3.71G        -         -     0%     1%  1.00x    ONLINE  -
+rpool_scx4fr   452G  4.06G   448G        -         -     0%     0%  1.00x    ONLINE  -

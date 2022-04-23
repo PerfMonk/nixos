@@ -1,0 +1,33 @@
+# This is a generated file.  Do not edit!
+#
+# To make changes, edit the fileSystems and swapDevices NixOS options
+# in your /etc/nixos/configuration.nix file.
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+
+# Filesystems.
+rpool_scx4fr/nixos/ROOT/default / zfs zfsutil,X-mount.mkdir 0 0
+bpool_scx4fr/nixos/BOOT/default /boot zfs zfsutil,X-mount.mkdir 0 0
+/dev/disk/by-uuid/BEA1-BCA4 /boot/efis/usb-SPCC_Sol_id_State_Disk_1-0:0-part1 vfat x-systemd.idle-timeout=1min,x-systemd.automount,noauto 0 2
+rpool_scx4fr/nixos/DATA/default/state /state zfs zfsutil,X-mount.mkdir 0 0
+/state/etc/cryptkey.d /etc/cryptkey.d none bind 0 0
+/state/etc/nixos /etc/nixos none bind 0 0
+rpool_scx4fr/nixos/DATA/default/home /home zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/local/nix /nix zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/root /root zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/srv /srv zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/usr/local /usr/local zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/games /var/games zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/lib/AccountsService /var/lib/AccountsService zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/lib/docker /var/lib/docker zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/lib/libvirt /var/lib/libvirt zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/lib/lxc /var/lib/lxc zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/lib/nfs /var/lib/nfs zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/log /var/log zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/spool /var/spool zfs zfsutil,X-mount.mkdir 0 0
+rpool_scx4fr/nixos/DATA/default/var/www /var/www zfs zfsutil,X-mount.mkdir 0 0
+
+
+# Swap devices.
+/dev/mapper/dev-disk-byx2did-usbx2dSPCC_Sol_id_State_Disk_1x2d0:0x2dpart4 none swap defaults
+

@@ -1,0 +1,21 @@
+https://discourse.nixos.org/t/nixos-on-luks-encrypted-partition-with-zfs-and-swap/6873
+https://setkeh.com/posts/nixos-zfs-install-guide/
+https://blog.lazkani.io/posts/nixos-on-encrypted-zfs/
+https://gist.github.com/ixmatus/7dcd56c8e878e8d98ee6d266f7949d11
+
+Solution pour luks en gpt
+https://unix.stackexchange.com/questions/482590/how-can-i-create-multiple-partitions-in-a-luks-container-using-a-gpt-mbr-partiti
+voir partprobe.service
+
+https://discourse.nixos.org/t/configure-grub-on-efi-system/2926/7
+https://pastebin.com/ZN0wivyw
+
+ZFS instructions NIXOS
+https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS/0-overview.html
+
+ZFS description pour utilisation similaire Ubuntu 22.04
+https://openzfs.github.io/openzfs-docs/Getting%20Started/Ubuntu/Ubuntu%2022.04%20Root%20on%20ZFS.html
+
+Utilisation nixos
+https://foo-dogsquared.github.io/blog/posts/moving-into-nixos/
+
