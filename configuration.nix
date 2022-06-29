@@ -111,6 +111,14 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
+  
+  # Ménage à la semaine avec le garbage-collector
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = false;
 
 }
-
