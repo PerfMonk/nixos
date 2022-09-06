@@ -10,7 +10,7 @@
 #     └─cryptswap   SWAP
 # └─sda5            legacy boot  (1MB)
 #
-### REF: https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS/0-overview.html
+### REF: https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS.html
 #
 set -e
 
